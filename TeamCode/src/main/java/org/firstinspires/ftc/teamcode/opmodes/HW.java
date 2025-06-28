@@ -23,6 +23,18 @@ public class DriveHW extends LinearOpMode{
             double frontRightPower = (y - x - rx);
             double backRightPower = (y + x - rx);
 
+            double max = Math.max(Math.abs(frontLeftPower),
+                    Math.max(Math.abs(backLeftPower),
+                            Math.max(Math.abs(frontRightPower),
+                                    Math.abs(backRightPower))));
+
+            if (max > 1.0) {
+                frontLeftPower /= max;
+                backLeftPower /= max;
+                frontRightPower /= max;
+                backRightPower /= max;
+            }
+
 
             fl.setPower(frontLeftPower);
             bl.setPower(backLeftPower);
