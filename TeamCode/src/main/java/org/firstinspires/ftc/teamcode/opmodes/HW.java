@@ -5,10 +5,23 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 public class DriveHW extends LinearOpMode{
     @Override
     public void runOpMode() throws InterruptedException {
-        DcMotor fl = hardwareMap.dcMotor.get("fl");
-        DcMotor fr = hardwareMap.dcMotor.get("fr");
-        DcMotor bl = hardwareMap.dcMotor.get("bl");
-        DcMotor br = hardwareMap.dcMotor.get("br");
+
+
+        public class Robot {
+            public PriorityMotor fl, fr, bl, br;
+            public Sensors sensors;
+            public Deposit deposit;
+            public Intake intake;
+
+        DcMotorEx frontLeft = (DcMotorEx) hw.get(DcMotor.class, "frontLeft");
+        DcMotorEx frontRight = (DcMotorEx) hw.get(DcMotor.class, "frontRight");
+        DcMotorEx backLeft = (DcMotorEx) hw.get(DcMotor.class, "backLeft");
+        DcMotorEx backRight = (DcMotorEx) hw.get(DcMotor.class, "backRight");
+
+        fl = new PriorityMotor(frontLeft, "fl", 1, 1, sensors);
+        fr = new PriorityMotor(frontRight, "fr", 1, 1, sensors);
+        bl = new PriorityMotor(backLeft, "bl", 1, 1, sensors);
+        br = new PriorityMotor(backRight, "br", 1, 1, sensors);
 
         double y = -gamepad1.left_stick_y;
         double x = gamepad1.left_stick_x;
